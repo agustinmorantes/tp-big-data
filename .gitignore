@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---- Proyecto ----
+# Los datos no se versionan (ver data/README.md)
+data/datalake/
+data/*.zip
+
+# Credenciales y bundles de AstraDB
+config/astra.env
+config/secure-connect*.zip
+
+# Salidas del pipeline
+spark-warehouse/
+checkpoints/
+*.crc
+_SUCCESS
