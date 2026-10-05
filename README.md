@@ -13,12 +13,13 @@ segunda.
 Patrón híbrido: batch para las 7 fuentes maestras, CRM y facturación; Structured Streaming para
 `usage_events_stream`. Las dos rutas escriben en el mismo Data Lake, con zonas Landing (formato
 original, inmutable), Bronze, Silver y Gold, en Parquet a partir de Bronze y particionado por
-fecha. El detalle está en el informe de diseño y en `docs/decisiones.md`.
+fecha. El detalle está en el informe de diseño (`docs/informe-primera-entrega.pdf`) y en
+`docs/decisiones.md`.
 
 ## Estructura
 
 ```
-docs/           decisiones técnicas, plan inicial y diagrama de arquitectura
+docs/           informe de diseño, decisiones técnicas, plan inicial y diagrama de arquitectura
 notebooks/      exploración y perfilado con PySpark, con las salidas guardadas
 data/           el dataset descomprimido (ignorado por git)
 src/            código del pipeline
