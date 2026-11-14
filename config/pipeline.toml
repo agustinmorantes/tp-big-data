@@ -1,0 +1,45 @@
+# Configuración del pipeline. Las rutas son relativas a la raíz del repo.
+# Cualquier valor se puede pisar con variables de entorno (ver src/cpa/config.py).
+
+[paths]
+landing = "data/datalake/landing"
+lake = "data/datalake"            # bronze/, silver/, gold/, quarantine/, _checkpoints/, _meta/
+evidence = "evidence/segunda-entrega"
+
+[spark]
+master = "local[*]"
+shuffle_partitions = 8            # el dataset entra en memoria: 200 particiones serían todo overhead
+driver_memory = "2g"
+timezone = "UTC"
+
+[streaming]
+# Ritmo del replay: 120 archivos JSONL / 10 = 12 micro-batches.
+max_files_per_trigger = 10
+# "availableNow" procesa lo disponible y termina (demo/Colab). En operación: "processingTime=3 minutes".
+trigger = "availableNow"
+# Política de datos tardíos (ADR-011): un evento es tardío si su event_ts es anterior al
+# máximo event_ts ya procesado menos este umbral. Se acepta y se marca; Gold lo incorpora al recalcular.
+late_threshold_hours = 6
+# Watermark nativo de la vista en tiempo casi real (ventanas de 1 h por organización).
+speed_watermark = "10 minutes"
+speed_window = "1 hour"
+
+[quality]
+cost_min_usd = -0.01              # por debajo de este valor el evento se marca con is_negative_cost
+billing_tax_rate = 0.21
+billing_tax_tolerance = 0.001     # |taxes/|subtotal| - 0.21| para aceptar la corrección de signo (ADR-006)
+
+[anomaly]
+# MAD / z-score robusto (Iglewicz & Hoaglin): z = 0.6745 * (x - mediana) / MAD; anomalía si |z| > umbral.
+robust_z_threshold = 3.5
+min_history_days = 14             # con menos días por (org, servicio) no se puntúa
+
+[gold]
+top_services_window_days = 14
+
+[serving]
+target = "cassandra"              # "cassandra" (Docker local) o "astra"
+keyspace = "cloud_provider_analytics"
+cassandra_host = "localhost"
+cassandra_port = 9042
+write_partitions = 4              # sesiones concurrentes contra Cassandra desde foreachPartition

@@ -1,0 +1,3 @@
+resource_id,org_id,service,region,created_at,state,tags_json
+res_a,org_a,compute,us-east,2025-01-01,running,"[""env:prod""]"
+res_b,org_b,storage,eu-west,2025-01-01,stopped,

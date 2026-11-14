@@ -231,3 +231,6 @@ spark-warehouse/
 checkpoints/
 *.crc
 _SUCCESS
+
+# Logs de ejecución locales (la evidencia se copia a evidence/)
+logs/

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2d3748"/>
+    </marker>
+    <style>
+      .box{fill:#fff;stroke:#4a5568;stroke-width:1.5}
+      .zone{stroke-width:1.5}
+      .h{font-weight:700;font-size:22px;fill:#1a202c}
+      .t{font-weight:600;font-size:20px;fill:#1a202c}
+      .s{font-size:18px;fill:#2d3748}
+      .ln{stroke:#2d3748;stroke-width:2;fill:none;marker-end:url(#a)}
+      .dash{stroke-dasharray:6 5}
+    </style>
+  </defs>
+  <rect width="1000" height="570" fill="#f7fafc"/>
+  <text x="20" y="38" class="h" font-size="24">Cloud Provider Analytics: arquitectura v2</text>
+  <text x="980" y="38" class="s" text-anchor="end">13/11/2026</text>
+
+  <!-- zonas -->
+  <rect x="20" y="62" width="180" height="338" rx="8" class="zone" fill="#edf2f7" stroke="#a0aec0"/>
+  <rect x="215" y="62" width="180" height="338" rx="8" class="zone" fill="#fdf2e9" stroke="#dd6b20"/>
+  <rect x="410" y="62" width="180" height="338" rx="8" class="zone" fill="#ebf8ff" stroke="#3182ce"/>
+  <rect x="605" y="62" width="180" height="338" rx="8" class="zone" fill="#fefcbf" stroke="#d69e2e"/>
+  <rect x="800" y="62" width="180" height="338" rx="8" class="zone" fill="#f0fff4" stroke="#38a169"/>
+  <text x="110" y="94" class="h" text-anchor="middle">Landing</text>
+  <text x="305" y="94" class="h" text-anchor="middle">Bronze</text>
+  <text x="500" y="94" class="h" text-anchor="middle">Silver</text>
+  <text x="695" y="94" class="h" text-anchor="middle">Gold</text>
+  <text x="890" y="94" class="h" text-anchor="middle">Serving</text>
+
+  <!-- fila batch -->
+  <rect x="30" y="112" width="160" height="100" rx="6" class="box"/>
+  <text x="110" y="152" class="t" text-anchor="middle">7 CSV</text>
+  <text x="110" y="178" class="s" text-anchor="middle">batch</text>
+  <rect x="225" y="112" width="160" height="100" rx="6" class="box"/>
+  <text x="305" y="152" class="t" text-anchor="middle">Parquet</text>
+  <text x="305" y="178" class="s" text-anchor="middle">esquema fijo</text>
+  <rect x="420" y="112" width="160" height="100" rx="6" class="box"/>
+  <text x="500" y="152" class="t" text-anchor="middle">Maestros</text>
+  <text x="500" y="178" class="s" text-anchor="middle">reglas, USD</text>
+
+  <!-- fila streaming -->
+  <rect x="30" y="262" width="160" height="118" rx="6" class="box"/>
+  <text x="110" y="310" class="t" text-anchor="middle">Eventos</text>
+  <text x="110" y="336" class="s" text-anchor="middle">120 JSONL</text>
+  <rect x="225" y="262" width="160" height="118" rx="6" class="box"/>
+  <text x="305" y="310" class="t" text-anchor="middle">Streaming</text>
+  <text x="305" y="336" class="s" text-anchor="middle">checkpoint</text>
+  <rect x="420" y="262" width="160" height="118" rx="6" class="box"/>
+  <text x="500" y="310" class="t" text-anchor="middle">Eventos</text>
+  <text x="500" y="336" class="s" text-anchor="middle">dedupe, tardíos</text>
+
+  <!-- Gold -->
+  <rect x="615" y="112" width="160" height="268" rx="6" class="box"/>
+  <text x="695" y="150" class="t" text-anchor="middle">Marts</text>
+  <text x="695" y="190" class="s" text-anchor="middle">FinOps</text>
+  <text x="695" y="222" class="s" text-anchor="middle">Soporte</text>
+  <text x="695" y="254" class="s" text-anchor="middle">GenAI</text>
+  <text x="695" y="286" class="s" text-anchor="middle">Anomalías</text>
+
+  <!-- Serving -->
+  <rect x="810" y="112" width="160" height="120" rx="6" class="box"/>
+  <text x="890" y="148" class="t" text-anchor="middle">Cassandra</text>
+  <text x="890" y="174" class="t" text-anchor="middle">AstraDB</text>
+  <text x="890" y="204" class="s" text-anchor="middle">7 tablas</text>
+  <rect x="810" y="262" width="160" height="118" rx="6" class="box"/>
+  <text x="890" y="310" class="t" text-anchor="middle">Consultas</text>
+  <text x="890" y="336" class="s" text-anchor="middle">6 de negocio</text>
+
+  <!-- flujos -->
+  <path d="M190 162 H223" class="ln"/>
+  <path d="M190 321 H223" class="ln"/>
+  <path d="M385 162 H418" class="ln"/>
+  <path d="M385 321 H418" class="ln"/>
+  <path d="M500 212 V260" class="ln"/>
+  <path d="M580 162 H613" class="ln"/>
+  <path d="M580 321 H613" class="ln"/>
+  <path d="M775 172 H808" class="ln"/>
+  <path d="M890 232 V260" class="ln"/>
+
+  <!-- salidas laterales -->
+  <rect x="225" y="420" width="160" height="64" rx="6" class="box" style="fill:#faf5ff;stroke:#805ad5"/>
+  <text x="305" y="447" class="t" text-anchor="middle">Speed view</text>
+  <text x="305" y="472" class="s" text-anchor="middle">watermark 10 min</text>
+  <rect x="420" y="420" width="160" height="64" rx="6" class="box" style="fill:#fff5f5;stroke:#e53e3e"/>
+  <text x="500" y="447" class="t" text-anchor="middle">Quarantine</text>
+  <text x="500" y="472" class="s" text-anchor="middle">con motivo</text>
+  <path d="M305 380 V418" class="ln dash"/>
+  <path d="M500 380 V418" class="ln dash"/>
+
+  <!-- transversales -->
+  <rect x="20" y="504" width="960" height="46" rx="8" class="zone" fill="#fff" stroke="#a0aec0"/>
+  <text x="500" y="534" class="s" text-anchor="middle"><tspan font-weight="700">Transversal:</tspan> gobierno y linaje · calidad · seguridad · observabilidad</text>
+</svg>
